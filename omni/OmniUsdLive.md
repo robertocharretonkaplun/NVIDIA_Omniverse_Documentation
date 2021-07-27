@@ -17,3 +17,36 @@ The live mode work in 2 ways, the next table will show the differences between t
 | You may call omniUsdLiveWaitForPendingUpdates to block until the server has acknowledged      |
 |     all the updates that you have sent to it.                                                 |
 | You may call omniUsdLiveLock to prevent other users from modifying a layer.                   |
+
+**Note: ** Live mode can be set per-layer with a global default.
+
+---
+
+### Exports
+This methods defines the mode where the client will be export, it can be with a basic initialization or a customized initialization with an URL and a mode type.
+'''
+{
+    typedef enum
+    {
+        eOmniUsdLiveModeDefault,
+        eOmniUsdLiveModeDisabled,
+        eOmniUsdLiveModeEnabled,
+    } OmniUsdLiveMode;
+
+    OMNICLIENT_EXPORT(void)
+    omniUsdLiveSetDefaultEnabled(bool enabled)
+    OMNICLIENT_NOEXCEPT;
+
+    OMNICLIENT_EXPORT(void)
+        omniUsdLiveSetModeForUrl(const char* url, OmniUsdLiveMode mode)
+        OMNICLIENT_NOEXCEPT;
+
+    OMNICLIENT_EXPORT(bool)
+        omniUsdLiveGetDefaultEnabled()
+        OMNICLIENT_NOEXCEPT;
+
+    OMNICLIENT_EXPORT(OmniUsdLiveMode)
+        omniUsdLiveGetModeForUrl(const char* url)
+        OMNICLIENT_NOEXCEPT;
+}
+'''
